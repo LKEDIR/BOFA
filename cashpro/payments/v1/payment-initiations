@@ -1,0 +1,139 @@
+
+Parameters
+Name 	Description
+Content-Type  *
+(header)
+	
+
+Identifying the content of the payload as JSON.
+ex. application/json
+Authorization  *
+(header)
+	
+
+A unique access token to be used for a single request.
+ex. Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X-Idempotency-Key  *
+(header)
+	
+
+A unique identifier to be used for a single payment. Length: 1 - 256
+ex. ABC123
+pmt_intent_id  *
+(header)
+	
+
+The intent ID generated with the /intents resource.
+ex. 11111111-AAAA-AAAA-AAAA-111111111111
+body  *
+(body)
+	
+
+Payment Initiation Request Body
+
+    Example value
+    Model
+
+{
+  "paymentIdentification": {
+    "instructionIdentification": "instrId123",
+    "endToEndIdentification": "e2eId123"
+  },
+  "paymentMethod": "TRF",
+  "requestedExecutionDate": "2018-01-13",
+  "amount": {
+    "value": "1.00",
+    "type": "CREDIT"
+  },
+  "debtorAccount": {
+    "identification": "601011111111",
+    "schemeName": "BBAN",
+    "currency": "string"
+  },
+  "debtorAgent": {
+    "institution": {
+      "name": "string",
+      "identifiers": [
+        {
+          "identification": "BOFAFRPP",
+          "schemeName": "BIC"
+        }
+      ]
+    }
+  },
+  "creditor": {
+    "name": "Beneficiary Name",
+    "postalAddress": {
+      "addressLine": [
+        {
+          "address": "Beneficiary Address Line 1"
+        }
+      ],
+      "city": "Beneficiary City",
+      "country": "GB"
+    }
+  },
+  "creditorAccount": {
+    "identification": "GB11BOFA11111111111111",
+    "schemeName": "IBAN",
+    "currency": "EUR"
+  },
+  "creditorAgent": {
+    "institution": {
+      "name": "string",
+      "identifiers": [
+        {
+          "identification": "BOFAGB22XXX",
+          "schemeName": "BIC"
+        }
+      ]
+    }
+  },
+  "paymentType": {
+    "serviceLevel": "URG"
+  },
+  "unstructuredRemittance": "Beneficiary unstructured addenda"
+}
+
+Parameter content type
+Responses
+Response content type
+Code 	Description
+200 	
+Response successfully retrieved
+
+    Example value
+    Model
+
+{
+  "mid": "1234567890ABC",
+  "paymentStatus": "PEND_APPROV"
+}
+
+400 	
+Bad Request
+
+    Example value
+    Model
+
+{
+  "errors": [
+    {
+      "code": "CPS_API_016",
+      "description": "INTENTID MISSING"
+    }
+  ]
+}
+
+401 	
+Unauthorized
+403 	
+Forbidden
+404 	
+Not Found
+405 	
+Invalid method
+500 	
+Internal server error
+503 	
+Service unavailable
