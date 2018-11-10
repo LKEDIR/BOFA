@@ -1,34 +1,25 @@
 
 Parameters
-Name 	Description
-Content-Type  *
-(header)
-	
+Name 	
+Description
 
+Content-Type  *
 Identifying the content of the payload as JSON.
 ex. application/json
-Authorization  *
-(header)
-	
 
+Authorization  *
 A unique access token to be used for a single request.
 ex. Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X-Idempotency-Key  *
-(header)
-	
 
+X-Idempotency-Key  *
 A unique identifier to be used for a single payment. Length: 1 - 256
 ex. ABC123
-pmt_intent_id  *
-(header)
-	
 
+pmt_intent_id  *
 The intent ID generated with the /intents resource.
 ex. 11111111-AAAA-AAAA-AAAA-111111111111
-body  *
-(body)
-	
 
+body  *
 Payment Initiation Request Body
 
     Example value
